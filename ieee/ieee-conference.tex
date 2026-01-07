@@ -1,0 +1,82 @@
+\documentclass[conference]{IEEEtran}
+
+% IEEE bibliography formatting
+\usepackage{cite}
+
+% Essential packages
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{float}
+
+% For pandoc
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Pandoc 3.x image handling - constrain to column width
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\columnwidth\columnwidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\newcommand{\pandocbounded}[1]{\begin{center}#1\end{center}}
+
+% Fix for pandoc longtable
+\usepackage{longtable,booktabs,array}
+\usepackage{calc}
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+
+% Graphics path
+\graphicspath{{./}{result_plots/}}
+
+% Hyperref should be loaded last to avoid clashes
+\usepackage[hidelinks]{hyperref}
+
+$if(title)$
+\title{$title$}
+$endif$
+
+$if(author)$
+\author{
+$for(author)$
+\IEEEauthorblockN{$author.name$}
+\IEEEauthorblockA{$if(author.affiliation)$$author.affiliation$$endif$\\
+$if(author.email)$$author.email$$endif$}
+$sep$ \and
+$endfor$
+}
+$endif$
+
+\begin{document}
+
+$if(title)$
+\maketitle
+$endif$
+
+$if(abstract)$
+\begin{abstract}
+$abstract$
+\end{abstract}
+$endif$
+
+$if(keywords)$
+\begin{IEEEkeywords}
+$keywords$
+\end{IEEEkeywords}
+$endif$
+
+$body$
+
+$if(bibliography)$
+\bibliographystyle{IEEEtran}
+\bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+$endif$
+
+\end{document}

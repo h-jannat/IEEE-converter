@@ -1,0 +1,9 @@
+services:
+  web:
+    build: .
+    command: python3 app.py
+    user: "${USER_ID:-1000}:${GROUP_ID:-1000}"
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app

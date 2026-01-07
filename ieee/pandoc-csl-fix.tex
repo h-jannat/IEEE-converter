@@ -1,0 +1,24 @@
+% Fix Pandoc --citeproc CSL bibliography alignment (esp. [10]+)
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em} % widen so [10], [100] fit
+
+% CSLReferences environment - add References title, 8pt font per IEEE standard
+\newenvironment{CSLReferences}[2]
+ {\section*{References}%
+  \footnotesize%
+  \begin{list}{}{%
+    \setlength{\labelwidth}{\csllabelwidth}%
+    \setlength{\leftmargin}{\csllabelwidth}%
+    \setlength{\itemindent}{-\csllabelwidth}%
+    \setlength{\parsep}{0pt}%
+    \setlength{\itemsep}{0.5em}%
+    \setlength{\rightmargin}{0pt}}}
+ {\end{list}}
+
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\dimexpr\columnwidth-\csllabelwidth\relax}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
